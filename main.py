@@ -1,12 +1,16 @@
-import pyautogui
+from pyautogui import locateCenterOnScreen, click, vscroll
 import time
+from constants import PATHS
 
 
 def FindPathOnScreen(path):
-    location = pyautogui.locateCenterOnScreen(f"images/{path}")
-    print(f"{path}", location)
+    location = locateCenterOnScreen(f"images/{path}")
     if location:
-        pyautogui.click(location)
+        click(location)
+        time.sleep(.1)
+        print(f"{path}", location)
+        if path is PATHS.get("PM"):
+            vscroll(-80)
         return True
     else:
         return False
@@ -14,20 +18,17 @@ def FindPathOnScreen(path):
 
 if __name__ == '__main__':
 
-    paths = [
-        "responda_las_preguntas.png",
-        "puede_mejorar.png",
-        "enviar_sus_respuestas.png",
-        "continuar.png",
-    ]
+    print("Program is Executing!")
 
-    interval = 0.1  # In secs
+    paths = ["AETO", "RLP", "PM", "ESR", "CONT"]
+
+    interval = 0.05  # In secs
 
     while True:
         time.sleep(interval)
         # For each path in paths
         for x in paths:
-            value = FindPathOnScreen(x)
+            value = FindPathOnScreen(PATHS.get(x))
             # This breaks the loop when image found
             if value:
                 break
