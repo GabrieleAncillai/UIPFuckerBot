@@ -15,10 +15,10 @@ def FindPathOnScreen(path):
 if __name__ == '__main__':
 
     paths = [
-        "continuar.png",
-        "enviar_sus_respuestas.png",
+        "responda_las_preguntas.png",
         "puede_mejorar.png",
-        "responda_las_preguntas.png"
+        "enviar_sus_respuestas.png",
+        "continuar.png",
     ]
 
     interval = 0.1  # In secs
@@ -29,5 +29,5 @@ if __name__ == '__main__':
         for x in paths:
             value = FindPathOnScreen(x)
             # This breaks the loop when image found
-            if value is not None:
+            if value:
                 break
